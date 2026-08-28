@@ -31,16 +31,16 @@ BASE = "https://www.googleapis.com/youtube/v3"
 CHANNELS = [
     ("Example Competitor 1", 200000, 1, "english", "core+extended"),
     ("Example Competitor 2", 185000, 1, "english", "core+extended"),
-    ("Example Competitor 3", 118000, 1, "english", "core+extended"),
+    ("Example Competitor 3", 115000, 1, "english", "core+extended"),
     ("Example Young Channel", 5500, 1, "english", "core"),
-    ("Example Competitor 4", 168000, 2, "english", "core+extended"),
+    ("Example Competitor 4", 172000, 2, "english", "core+extended"),
     ("Example Competitor 5", 29000, 2, "english", "core+extended"),
     ("Example Competitor 6", 44000, 2, "english", "core+extended"),
     ("Example Competitor 7", 14000, 2, "english", "core+extended"),
     ("Example Competitor 8", 91000, 2, "english", "core+extended"),
     ("Example Competitor 9", 64000, 2, "english", "core+extended"),
     ("Your Channel", 2000, 0, "english", "core"),
-    ("Example Cross-Language Fallback 1", 150000, 9, "cross-language", "cross-language"),
+    ("Example Cross-Language Fallback 1", 155000, 9, "cross-language", "cross-language"),
     ("Example Cross-Language Fallback 2", 400000, 9, "cross-language", "cross-language"),
 ]
 
