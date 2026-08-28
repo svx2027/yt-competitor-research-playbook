@@ -56,6 +56,9 @@ ALLOWED_HOOK = {
 }
 ALLOWED_LANGUAGE = {"english","hinglish","hindi-devanagari","mixed-other"}
 
+# EXAMPLE VALUES BELOW (ALLOWED_TOPIC/FORMAT/HOOK/LANGUAGE + TAG_PROMPT): a full illustrative
+# instantiation for one niche (CAT prep). Per run_order.md's edit map, replace the taxonomy and the
+# prompt's niche description with your own before running on a different niche.
 TAG_PROMPT = """Tag this YouTube video for a CAT (Common Admission Test, the Indian MBA entrance exam) competitor research project. The channel set is English-medium CAT and OMET (other management entrance test) preparation.
 
 Title: {title}

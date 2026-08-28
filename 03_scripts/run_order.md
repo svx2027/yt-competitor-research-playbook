@@ -56,7 +56,7 @@ python 03_scripts/depth_winners.py             # -> out/depth_winners.csv/.json/
 
 # Phase J — vidIQ demand backing (vidIQ MCP keyword_research; dedupe keywords first; cache results to a file)
 
-# Phase K — build the calendar (fresh builder, replaces the broken IPMAT chain)
+# Phase K — build the calendar (fresh builder, replaces the broken run-1.0 chain)
 python 03_scripts/build_calendar.py            # -> FINAL/04_operational_calendars/<niche>_calendar.xlsx
                                                #    out/calendar_data.json (slotted ideas, for titling)
 # Phase Titles — best titles via Gemini (free), then re-merge

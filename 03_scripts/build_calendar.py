@@ -39,14 +39,18 @@ load_dotenv(PROJ / ".env")
 YT_KEY = os.getenv("YT_API_KEY")
 YT_BASE = "https://www.googleapis.com/youtube/v3"
 
+# EXAMPLE VALUES BELOW (KEYWORD_DEMAND, TOPIC_TO_KEYWORD, TITLE_FRAME, THUMB, WEEK_SCHEDULE): one full
+# illustrative instantiation, for a CAT-prep niche, of what these per-niche dictionaries look like
+# filled in. Search-volume/opportunity pairs are illustrative round numbers, not a live vidIQ pull —
+# replace with your own keyword_research results. Per-niche edits per run_order.md's edit map.
 KEYWORD_DEMAND = {
-    "IIM placement reality": (4938, 63), "salary after MBA": (5020, 63), "CAT profile evaluation": (5209, 61),
-    "life at IIM": (5139, 63), "best MBA colleges in India": (7703, 63), "CAT 2026 strategy": (4773, 61),
-    "CAT score vs percentile": (8579, 58), "CAT 2026": (35196, 60), "CAT mock test": (4508, 60),
-    "CAT preparation strategy": (4773, 61), "VARC CAT preparation": (21454, 68), "CAT DILR strategy": (9123, 67),
-    "CAT quant": (22380, 67), "WAT PI preparation": (5148, 57), "MBA exams other than CAT": (4569, 63),
-    "CAT topper": (9998, 61), "CAT preparation": (27627, 67), "FMS Delhi": (15179, 65),
-    "reading comprehension for CAT preparation": (8701, 66), "CAT preparation for beginners": (12844, 61),
+    "IIM placement reality": (4900, 63), "salary after MBA": (5000, 63), "CAT profile evaluation": (5200, 61),
+    "life at IIM": (5150, 63), "best MBA colleges in India": (7700, 63), "CAT 2026 strategy": (4800, 61),
+    "CAT score vs percentile": (8600, 58), "CAT 2026": (35000, 60), "CAT mock test": (4500, 60),
+    "CAT preparation strategy": (4750, 61), "VARC CAT preparation": (21500, 68), "CAT DILR strategy": (9100, 67),
+    "CAT quant": (22400, 67), "WAT PI preparation": (5150, 57), "MBA exams other than CAT": (4600, 63),
+    "CAT topper": (10000, 61), "CAT preparation": (27600, 67), "FMS Delhi": (15200, 65),
+    "reading comprehension for CAT preparation": (8700, 66), "CAT preparation for beginners": (12800, 61),
 }
 TOPIC_TO_KEYWORD = {
     "placement-stories": "IIM placement reality", "fees-roi": "salary after MBA",
@@ -98,42 +102,42 @@ THUMB = {
 # ---------- playlists (full series, grounded in the research) ----------
 # EXAMPLE VALUES. "proof" should cite your own outlier evidence (channel + view count + the
 # matching vidIQ keyword volume), e.g. "Competitor 3: 'Why 90% Fail in LRDI' 21K views; cat dilr
-# strategy 9,123/mo". Fill from your own outliers_core.csv + KEYWORD_DEMAND, never invented.
+# strategy 9,100/mo". Fill from your own outliers_core.csv + KEYWORD_DEMAND, never invented.
 PLAYLISTS = [
     {"name": "Complete VARC in English", "type": "Hero", "keyword": "VARC CAT preparation", "run": "Jun to Nov",
-     "proof": "see outliers_core.csv for this niche's VARC winners; varc cat preparation 21,454/mo",
+     "proof": "see outliers_core.csv for this niche's VARC winners; varc cat preparation 21,500/mo",
      "episodes": ["RC method for CAT", "Para-jumbles", "Para-summary", "Odd sentence out", "Vocab in context",
                   "RC speed vs accuracy", "Inference and tone questions", "VARC for non-engineers",
                   "VARC mock analysis", "Last-mile VARC revision"]},
     {"name": "Complete DILR in English", "type": "Hero", "keyword": "CAT DILR strategy", "run": "Jun to Nov",
-     "proof": "see outliers_core.csv for this niche's top DILR outlier; cat dilr strategy 9,123/mo",
+     "proof": "see outliers_core.csv for this niche's top DILR outlier; cat dilr strategy 9,100/mo",
      "episodes": ["Set selection in DILR", "Arrangements and puzzles", "DI tables and graphs",
                   "Games and tournaments", "Conditional sets", "Why most fail LRDI", "DILR speed",
                   "DILR mock analysis", "Hard set walkthrough", "Last-mile DILR"]},
     {"name": "Complete QA in English", "type": "Hero", "keyword": "CAT quant", "run": "Jun to Nov",
-     "proof": "cat quant 22,380/mo",
+     "proof": "cat quant 22,400/mo",
      "episodes": ["Arithmetic for CAT", "Algebra", "Geometry", "Number system", "Modern math",
                   "QA shortcuts", "Quant without fear (non-engineers)", "QA mock analysis", "Last-30-days QA"]},
     {"name": "Complete OMET in English", "type": "Hero", "keyword": "MBA exams other than CAT", "run": "Aug to Dec",
-     "proof": "xat 12,083/mo, mba exams other than cat 4,569/mo (never title 'OMET')",
+     "proof": "xat 12,100/mo, mba exams other than cat 4,600/mo (never title 'OMET')",
      "episodes": ["XAT decision making and essay", "SNAP strategy", "NMAT strategy", "IIFT",
                   "CMAT GK", "TISSNET", "MBA exams beyond CAT overview", "OMET vs CAT planning"]},
     {"name": "CAT 2026 Strategy From Scratch", "type": "Lane", "keyword": "CAT 2026 strategy", "run": "Jun to Nov",
-     "proof": "cat preparation 27,627/mo",
+     "proof": "cat preparation 27,600/mo",
      "episodes": ["How to start CAT prep", "6-month plan", "Sectional strategy", "Mock strategy",
                   "Balancing job or college", "Last 30 days", "Exam-day plan"]},
     {"name": "MBA Reality and IIM Life", "type": "Lane", "keyword": "IIM placement reality", "run": "Jun to Oct",
-     "proof": "see outliers_core.csv for this niche's top real-salary outlier; iim placement reality 4,938/mo",
+     "proof": "see outliers_core.csv for this niche's top real-salary outlier; iim placement reality 4,900/mo",
      "episodes": ["Real salary after MBA", "IIM placement reality", "Life at IIM A/B/C",
                   "Life at the new IIMs", "A day in the life", "Finance vs Marketing vs HR",
                   "Corporate vs startup after MBA", "Is the MBA worth it"]},
     {"name": "Selection Criteria Decoded", "type": "Lane", "keyword": "FMS Delhi", "run": "Jun to Sep",
-     "proof": "see outliers_core.csv for this niche's top selection-criteria outlier; FMS Delhi 15,179/mo",
+     "proof": "see outliers_core.csv for this niche's top selection-criteria outlier; FMS Delhi 15,200/mo",
      "episodes": ["FMS Delhi criteria", "IIM A/B/C criteria", "IIM Indore and Kozhikode",
                   "New IIMs criteria", "Can I get in with a gap year", "Low academics or category profiles",
                   "Non-engineer profiles", "How to fill the CAT form"]},
     {"name": "CAT Toppers Decoded", "type": "Lane", "keyword": "CAT topper", "run": "Jun to Nov",
-     "proof": "see outliers_core.csv for this niche's topper-interview winners; cat topper 9,998/mo",
+     "proof": "see outliers_core.csv for this niche's topper-interview winners; cat topper 10,000/mo",
      "episodes": ["Non-engineer 99 percentiler", "100 percentiler interview",
                   "Working-professional topper", "Repeater comeback", "How the topper studied"]},
     {"name": "Daily Targets to CAT 2026", "type": "Lane (recurring)", "keyword": "CAT preparation", "run": "Jun to Nov",
@@ -141,7 +145,7 @@ PLAYLISTS = [
      "episodes": ["Weekly target checklist (recurring)", "Days-to-CAT countdown (recurring)",
                   "Must-do of the week (recurring)"]},
     {"name": "WAT-PI Prep", "type": "Lane (post-result)", "keyword": "WAT PI preparation", "run": "Jan to Mar 2027",
-     "proof": "see outliers_core.csv for this niche's top interview-prep outlier; wat pi preparation 5,148/mo",
+     "proof": "see outliers_core.csv for this niche's top interview-prep outlier; wat pi preparation 5,150/mo",
      "episodes": ["WAT writing", "GD do's and don'ts", "Common PI questions", "Gap-year and profile answers",
                   "Mock personal interview"]},
 ]
