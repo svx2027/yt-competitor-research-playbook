@@ -1,0 +1,82 @@
+# Per-niche config. Copy to config.yaml and fill in. One file to edit per project.
+# Until the scripts are refactored to read this (the optional clean refactor in run_order.md),
+# these same values are edited inline at the top of each script. See run_order.md for the edit map.
+# Values below mirror the constants the corrected scripts actually use.
+
+niche: CAT                      # the exam or topic, e.g. CAT, GATE, NEET
+channel:
+  name: "<your channel name>"
+  id: "UC..."                   # your own channel id (for first-party tagging + Studio data)
+
+# Does this niche have a strong season (an exam window students cluster around)? If yes, the
+# pipeline pulls an older tail and slices the season across two years. If no, set seasonal.enabled
+# false and the run is core-window only (skip make_seasonal_subsets / seasonal_slice).
+seasonal:
+  enabled: true
+  months: [5, 6, 7, 8]          # the season to study (e.g. May to Aug ramp before a Nov exam)
+  years: [2025, 2024]           # which two years to compare
+
+# Data layers. Only the core layer ever gets an outlier ratio (the firewall). Extended and
+# cross-language layers are for absolute-views and seasonal inspiration only.
+windows:
+  core:                         # locked trailing 365 days. Ratio math. Never rolling mid-project.
+    start: "2025-05-20"
+    end: "2026-05-20"
+  extended:                     # older tail for channels older than ~2 years (seasonal/absolute only)
+    start: "2024-04-01"         # ends where core starts; no overlap
+  # cross-language layer (optional, see cross_language below) spans extended.start .. core.end
+
+outlier:
+  high_vol_threshold: 3.0       # multiplier when the channel-FORMAT cell has >= count_cutoff videos
+  low_vol_threshold: 5.0        # multiplier when the cell is below that count
+  count_cutoff: 500             # count-based gate (number of in-window videos in that channel-format)
+  thin_baseline_min: 8          # cells below this many videos are flagged thin; lean on absolute views
+
+format:
+  short_max_seconds: 180        # fixed Shorts proxy. The Data API exposes NO Shorts flag, so duration
+                                # is the only signal. live comes from API metadata, never duration.
+
+# Competitors: 7 to 14. Mix institutional + named-creator. Resolve handles to UC ids and confirm
+# against real sub counts. layer: which data layers this channel feeds.
+competitors:
+  - { name: "Competitor A", id: "UC...", type: institutional, language: english, layer: "core+extended" }
+  - { name: "Competitor B", id: "UC...", type: named-creator,  language: english, layer: "core+extended" }
+  - { name: "Young Channel", id: "UC...", type: institutional, language: english, layer: "core" }  # under 2yr
+
+# Optional cross-language / parent-channel mining: a same-market channel in another language (e.g. a
+# Hinglish parent of an English spin-off). Mined for topic and format only, re-expressed in the target
+# language, never quoted for CTR. Never enters the ratio math.
+cross_language:
+  enabled: false
+  language: hinglish
+  channels:
+    - { name: "Parent Channel", id: "UC..." }
+
+tiers:
+  bank_size_per_tier: 80        # ideas per tier in the complete idea bank (Tier 1 / 2 / 3)
+  # Over-supply the weekly calendar so the team picks the best 50 to 60%. Every idea is pre-validated.
+  per_week_quota: { short: 8, long: 6, live: 4, playlist: 2 }   # 20/week (CAT run). Tune to cadence.
+
+calendar:
+  weeks: 12
+  week0: true                   # a lighter kickoff week before week 1
+  start_monday: "2026-..."      # the Monday week 1 begins on
+
+titles:
+  source: gemini                # gemini (free, default) writes the best title per vidIQ guidelines;
+                                # the original competitor title stays in the sheet for comparison.
+                                # set to vidiq only if you want score_title (5 credits each) on drafts.
+
+vidiq:
+  budget_credits: 1700          # keyword_research is 5 credits each; dedupe keywords first.
+                                # NOTE: vidIQ keyword volume has no country parameter (default geo).
+
+exam_calendar:                  # the cycle anchors that drive week themes
+  - { date: "2026-08-01", event: "Registration opens" }
+  - { date: "2026-11-29", event: "Exam day" }
+  - { date: "2027-01-05", event: "Result" }
+  - { date: "2027-02-15", event: "Interview / WAT-PI window" }
+
+paths:
+  out_dir: out
+  final_dir: FINAL
