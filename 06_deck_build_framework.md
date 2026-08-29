@@ -2,7 +2,7 @@
 
 After the calendar (Phase K), Stage L turns the research and calendar into a founder-facing strategy
 deck (via the Gamma MCP) plus a presenter explainer (a Word doc). This is the durable, niche-agnostic
-framework for that stage, distilled from two real deck builds (see `05_worked_example.md`). The deck
+framework for that stage, distilled from two real deck builds (see [`05_worked_example.md`](05_worked_example.md)). The deck
 exists to justify the engagement to a non-technical founder: every claim sourced, every number with a
 denominator, the source named on each slide.
 
@@ -96,5 +96,5 @@ Build the explainer with the docx skill (python-docx is fine), then validate the
 6. The closing slide is forward-looking; limitations are in the explainer.
 7. You looked at every slide as a rendered image, not just the outline.
 
-Reference builds: both runs described in `05_worked_example.md`; the second run's own deck-stage
+Reference builds: both runs described in [`05_worked_example.md`](05_worked_example.md); the second run's own deck-stage
 learnings live at `FINAL/01_strategy_deck/deck_build_learnings.md` inside that project's working copy.

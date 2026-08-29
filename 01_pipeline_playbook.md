@@ -45,7 +45,7 @@ output is bounded by the quality of these calls. Defaults are what worked for ru
 | Competitor list | 7 to 14 channels | Mix of institutional + named-creator. Too few misses patterns; too many burns API + Gemini budget. Run 1.0 tracked 11, run 2.0 tracked 13. |
 | Core analysis window | trailing 365 days | Fixed start + end. The only window that carries an outlier ratio. Never "rolling" mid-project — it breaks comparability. |
 | Extended window | older tail for channels over ~2 years | Absolute-views and seasonal only, never a ratio. Ends where the core window starts (no overlap). Skip for niches with no season and no long-lived channels. |
-| Seasonal focus | yes if the niche has a season | If yes, set the season months and the two years to compare (CAT: May to Aug, 2025 and 2024). The seasonal slice is often where the real findings are. If no, run core-window only. |
+| Seasonal focus | yes if the niche has a season | If yes, set the season months and the two years to compare (run 2.0: May to Aug, 2025 and 2024). The seasonal slice is often where the real findings are. If no, run core-window only. |
 | Cross-language mining | optional | A same-market channel in another language (e.g. a Hinglish parent of an English channel). Mined for topic/format only, re-expressed in the target language, never a ratio, never quoted for CTR. |
 | Outlier threshold | count-based: 3x channel-format median if that cell has 500+ in-window videos, else 5x | Per channel-format, not channel-wide. Cells under 8 videos are flagged thin-baseline and lean on absolute views. (1.0 keyed this on the wrong variable; see retrospective.) |
 | Format taxonomy | short / long / live | Live from API metadata (liveBroadcastContent / liveStreamingDetails), never duration. Short = non-live duration at or under 180s (fixed proxy; the Data API exposes no Shorts flag). |
@@ -53,7 +53,7 @@ output is bounded by the quality of these calls. Defaults are what worked for ru
 | Calendar horizon | 12 weeks (+ optional Week 0) | Long enough to span an exam cycle's hot months; short enough to stay actionable. |
 | Weekly over-supply | 20/week: 8 short, 6 long, 4 live, 2 playlist | Over-supply so the team picks the best 50 to 60%. Every idea is pre-validated, so choice costs nothing. (Run 1.0 shipped ~8/week; run 2.0 over-supplied.) |
 | Best-title source | Gemini (free) | Gemini writes the best title per vidIQ guidelines; keep the original competitor title alongside. Use vidIQ score_title (5 credits each) only if you specifically want CTR scores on draft titles. |
-| vidIQ budget | ~200 to 1,000 credits | keyword_research is 5 credits each; dedupe keywords first. CAT spent ~165 (keywords only, Gemini titles). Volumes are default-geo (no country parameter). |
+| vidIQ budget | ~200 to 1,000 credits | keyword_research is 5 credits each; dedupe keywords first. Run 2.0 spent ~165 (keywords only, Gemini titles). Volumes are default-geo (no country parameter). |
 | Second-creator routing | yes/no | Decide whether lifestyle/meme content routes to a separate vehicle or the main channel. |
 
 Record your answers in `context.md` at the new repo root before starting. They are the project's
@@ -123,7 +123,7 @@ Conventions: scripts at repo root, raw output to `out/`, clean copies promoted t
 
 Run phases in order. Fetch and depth scripts checkpoint to a `.progress.json`, so an interrupted run
 resumes. STOP points are where the operator sanity-checks before spending more API/credit budget. The
-exact commands and the per-niche edit map are in `03_scripts/run_order.md`.
+exact commands and the per-niche edit map are in [`03_scripts/run_order.md`](03_scripts/run_order.md).
 
 ### Phase 0 — Scoping
 Write `context.md` with the section-1 decisions: the channel set with each channel's data layer, the
@@ -213,7 +213,7 @@ cross-language channel to mine. Lock these before any code runs.
 - `vidiq_keyword_research` per unique keyword → search volume + competition + opportunity. Cache to a
   results file so rebuilds don't re-spend credits. Volumes are default-geo (no country parameter).
 - `vidiq_score_title` (5 credits each) is optional — use it only if you want CTR scores on draft titles.
-  CAT skipped it and titled with Gemini for free.
+  Run 2.0 skipped it and titled with Gemini for free.
 
 ### Phase K — Calendar assembly  (`build_calendar.py`)
 - A fresh, self-contained builder (replaces the 1.0 build chain, which is broken). Reads the seasonal,
@@ -278,7 +278,7 @@ which gives what before you spend on it.
 | youtube-transcript-api | Dp | Video transcripts for hook/arc analysis | Blocked after a few requests from one IP (anti-scraping); coverage is partial | no quota, but unreliable in bulk |
 | Gemini (gemini-2.5-flash-lite) | E, Dp, T | The AI layer: topic/format/hook/language tagging, comment-theme and hook extraction, and best-title writing | Not a data source; tag the same prompt every time or comparison breaks | free tier sufficient |
 | vidIQ MCP `keyword_research` | A, J | The demand layer the YouTube API cannot give: real search volume + opportunity per keyword | No country parameter, so volumes are default-geo | 5 credits per call; dedupe keywords first |
-| vidIQ MCP `score_title` | J (optional) | 0-100 CTR-potential score for a draft title | Low value on titles the team will rewrite; emoji/filter trips it | 5 credits per call; CAT skipped it |
+| vidIQ MCP `score_title` | J (optional) | 0-100 CTR-potential score for a draft title | Low value on titles the team will rewrite; emoji/filter trips it | 5 credits per call; run 2.0 skipped it |
 | vidIQ MCP `balance` | A | Pre-flight credit check | — | 0 credits |
 | Claude Code | all | Orchestration: runs the scripts, does the statistics and synthesis, assembles the bundle | — | — |
 | Gamma MCP | L | Generates the founder strategy deck (presentation → pptx) | Cannot edit an existing deck; regenerate to change it | Gamma subscription |
@@ -287,16 +287,16 @@ which gives what before you spend on it.
 
 Always run `vidiq_balance` before a Phase J run, and confirm the credit budget with the operator before
 any bulk spend. With Gemini titles and keyword-only vidIQ, a full run costs a few hundred credits, not
-thousands (CAT spent ~165). The advanced/optional tools (thumbnail scoring, retention via the YouTube
-Analytics API, Ahrefs, etc.) live in `02_advanced_framework.md`. The deck stage is detailed in
-`06_deck_build_framework.md`.
+thousands (run 2.0 spent ~165). The advanced/optional tools (thumbnail scoring, retention via the YouTube
+Analytics API, Ahrefs, etc.) live in [`02_advanced_framework.md`](02_advanced_framework.md). The deck stage is detailed in
+[`06_deck_build_framework.md`](06_deck_build_framework.md).
 
 ---
 
 ## 8. Final output specification (the deliverable)
 
 A single xlsx, 6 sheets, in `FINAL/04_operational_calendars/`, built by `build_calendar.py`. Full
-column reference in `04_templates/calendar_schema_template.md`.
+column reference in [`04_templates/calendar_schema_template.md`](04_templates/calendar_schema_template.md).
 
 1. **Read me first** — what the file is, top ideas for the current week, how to read, counts.
 2. **Weekly calendar** — the money sheet. Frozen header row + merged week-section headers, each
@@ -374,7 +374,7 @@ That is the non-negotiable the operator set and the thing that makes each idea a
 - **Seasonal layering with a firewall (the big method add).** For a seasonal niche, pull a core 365-day
   window for ratios plus an age-adaptive older tail and a cross-language layer for inspiration, kept in
   separate files so a ratio never touches the older or cross-language data. The May-to-August slice
-  across two years was where the strongest CAT findings came from.
+  across two years was where the strongest run 2.0 findings came from.
 - **Degenerate medians fake breakouts.** A small channel that dumps a course playlist gets a tiny
   long-form median, so its promo videos show absurd ratios (1000x). **Resolved** by the thin-baseline
   flag and by reading these as funnel content, not organic wins.
@@ -400,7 +400,7 @@ late. For a new niche, lock the exam-cycle calendar (Phase H) conceptually befor
 ## 10. Worked examples: the two real runs
 
 This playbook is distilled from two completed runs on a real entrance-exam-prep channel. Full detail
-is in `05_worked_example.md`; the short version:
+is in [`05_worked_example.md`](05_worked_example.md); the short version:
 
 - **Run 1.0.** 11 channels, 6,687 in-window videos, 570 outliers, a tiered idea bank, and a
   12-week exam-cycle-anchored calendar. Established the locked window, the ranking-lens discipline, the

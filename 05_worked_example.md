@@ -65,4 +65,5 @@ Both runs' full deliverables (the tiered idea banks, the vidIQ-backed xlsx, the 
 synthesis docs, the cold-start handoffs) are client work product and are not part of this public
 template — this repo ships the reusable pipeline only, with no run data. If you run this playbook
 yourself, your own project's `FINAL/` folder is where your equivalents land (see the layout in
-`01_pipeline_playbook.md` section 2 and the skeleton in `04_templates/final_bundle_skeleton/`).
+[`01_pipeline_playbook.md`](01_pipeline_playbook.md) section 2 and the skeleton in
+[`04_templates/final_bundle_skeleton/`](04_templates/final_bundle_skeleton/)).

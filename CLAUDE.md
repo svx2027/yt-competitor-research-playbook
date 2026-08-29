@@ -9,8 +9,9 @@ project for any niche. The operator copies this whole folder to start a new proj
 inside the copy. This file is the durable memory: it tells you the pipeline, how to organise the
 data, what is required, and what to set up first if it is not set up yet.
 
-Read order for a fresh session: this `CLAUDE.md` → `README.md` → `01_pipeline_playbook.md`. If the
-operator pastes the kickoff prompt, follow `NICHE_KICKOFF_PROMPT.md`.
+Read order for a fresh session: this `CLAUDE.md` → [`README.md`](README.md) →
+[`01_pipeline_playbook.md`](01_pipeline_playbook.md). If the operator pastes the kickoff prompt, follow
+[`NICHE_KICKOFF_PROMPT.md`](NICHE_KICKOFF_PROMPT.md).
 
 ---
 
@@ -33,7 +34,7 @@ explanations. Preferences worth carrying into every session:
 A repeatable system that turns "I want to grow channel X in niche Y" into a 12-week, exam-cycle or
 season-anchored content calendar, where every idea is sourced from a proven competitor outlier and
 backed by vidIQ demand data. It has been run twice end-to-end on a real entrance-exam-prep channel
-(see `05_worked_example.md`). The second run corrected three script defects and added the seasonal
+(see [`05_worked_example.md`](05_worked_example.md)). The second run corrected three script defects and added the seasonal
 and data-layer methods that are now baked in. This folder is the generalised distillation of both runs.
 
 ---
@@ -58,7 +59,7 @@ Phase T  Best titles          gen_titles_gemini.py -> gemini_titles.json (free);
 Phase L  Founder deck (STOP)  Gamma strategy deck + presenter explainer; see 06_deck_build_framework.md
 ```
 
-Full detail in `01_pipeline_playbook.md`. STOP = sanity-check with the operator before spending more
+Full detail in [`01_pipeline_playbook.md`](01_pipeline_playbook.md). STOP = sanity-check with the operator before spending more
 API or credit budget.
 
 ---
@@ -142,30 +143,30 @@ If any of these is missing, that is the first setup step — see section 7.
 ## 7. First-time setup (only if not already set up)
 
 Keep setup minimal. Do NOT set up advanced/OAuth tooling unless the operator asks; those are
-documented in `02_advanced_framework.md` as opt-in.
+documented in [`02_advanced_framework.md`](02_advanced_framework.md) as opt-in.
 
 1. `python3 -m venv .venv && source .venv/bin/activate`
 2. `pip install requests python-dotenv youtube-transcript-api openpyxl pyyaml`
 3. Copy `.env.example` to `.env`, paste the two API keys.
-4. Copy `03_scripts/config.example.yaml` to `config.yaml`, fill the niche values.
+4. Copy [`03_scripts/config.example.yaml`](03_scripts/config.example.yaml) to `config.yaml`, fill the niche values.
 5. Confirm vidIQ access by checking the balance (vidIQ MCP `vidiq_balance`).
-6. Copy `04_templates/final_bundle_skeleton/` to `FINAL/` and `04_templates/context_template.md` to
-   `context.md`.
+6. Copy [`04_templates/final_bundle_skeleton/`](04_templates/final_bundle_skeleton/) to `FINAL/` and
+   [`04_templates/context_template.md`](04_templates/context_template.md) to `context.md`.
 
-The scripts in `03_scripts/` are the corrected pipeline, proven on two runs. They carry niche
+The scripts in [`03_scripts/`](03_scripts/) are the corrected pipeline, proven on two runs. They carry niche
 constants inline. For a new niche, edit the constants at the top of each script per the edit map in
-`03_scripts/run_order.md` (channel list, window dates, season months, tagging taxonomy, calendar
+[`03_scripts/run_order.md`](03_scripts/run_order.md) (channel list, window dates, season months, tagging taxonomy, calendar
 dictionaries); refactoring them to read `config.yaml` is an optional one-time job. The first run's
 scripts were retired for three known defects (a median-based outlier gate, duration-based format
 classification, a broken calendar-build chain); the corrected scripts here supersede them — see
-`03_scripts/run_order.md` for what was wrong and what replaced it. Gemini model used by the scripts:
+[`03_scripts/run_order.md`](03_scripts/run_order.md) for what was wrong and what replaced it. Gemini model used by the scripts:
 gemini-2.5-flash-lite (free tier).
 
 ---
 
 ## 8. When the operator pastes the kickoff prompt
 
-`NICHE_KICKOFF_PROMPT.md` is the prompt the operator pastes to start a new niche. When they do, do not
+[`NICHE_KICKOFF_PROMPT.md`](NICHE_KICKOFF_PROMPT.md) is the prompt the operator pastes to start a new niche. When they do, do not
 assume — ask the scoping questions listed in that file (niche, channel, competitors, window, cycle
 dates, budgets), confirm the answers into `context.md`, then begin Phase A. Ask before spending any
 API or vidIQ budget.
@@ -177,4 +178,4 @@ API or vidIQ budget.
 Match the conventions of the worked example: sentence-case headers, no em dashes, lists with colons,
 magnitudes with denominators and a cited source file, findings as hypothesis-evidence-implication with
 counter-evidence acknowledged. The final calendar follows the 17-column schema in
-`04_templates/calendar_schema_template.md`.
+[`04_templates/calendar_schema_template.md`](04_templates/calendar_schema_template.md).

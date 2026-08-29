@@ -1,6 +1,6 @@
 # Advanced competitive-analysis framework: everything we could add
 
-The core pipeline (`01_pipeline_playbook.md`) is the proven, level-1 system. This document is the
+The core pipeline ([`01_pipeline_playbook.md`](01_pipeline_playbook.md)) is the proven, level-1 system. This document is the
 level-2 menu: every capability we did NOT use in the first run but could, across vidIQ MCP,
 the YouTube APIs, Gemini, and adjacent tools. Each item says what it is, why it helps, and is tagged:
 
@@ -19,7 +19,7 @@ table.
 ## Already graduated to the core pipeline (run 2.0)
 
 These were level-2 ideas after run 1.0; run 2.0 promoted them into the proven core
-pipeline (`01_pipeline_playbook.md`). Do not treat them as optional any more for a seasonal niche:
+pipeline ([`01_pipeline_playbook.md`](01_pipeline_playbook.md)). Do not treat them as optional any more for a seasonal niche:
 
 - **Two-year seasonal analysis.** Pull an age-adaptive older tail and slice the season (e.g. May to
   Aug) across two years. For a seasonal niche this is where the strongest findings live. Now Phase S.
