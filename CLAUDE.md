@@ -116,10 +116,11 @@ If any of these is missing, that is the first setup step — see section 7.
 ### Learnings from a large, institution-heavy niche run
 
 - The count-based outlier threshold is deliberately GENEROUS and, at institution scale, over-fires. A
-  niche with daily-live mega-channels (one run: 38,682 in-window videos, one channel-format cell of
-  ~7,000) produced 6,434 flagged outliers, 17% of all videos. The raw flag count is NEVER the
-  deliverable. Rank by ratio and report the meaningful tiers (10x / 20x / 50x), and mine ideas from the
-  evergreen-filtered, ratio-ranked top, not the flag list.
+  niche with daily-live mega-channels (one run: tens of thousands of in-window videos, with a single
+  channel-format cell alone running into the thousands) produced thousands of flagged outliers, on the
+  order of one in six videos. The raw flag count is NEVER the deliverable. Rank by ratio and report
+  the meaningful tiers (10x / 20x / 50x), and mine ideas from the evergreen-filtered, ratio-ranked top,
+  not the flag list.
 - The deterministic title-keyword classifier is a ROUGH FIRST PASS ONLY. On bilingual, emoji-heavy,
   phrase-style titles it agreed with Gemini only 61% and dumped 20-40% of each channel into "other",
   misranking the obvious teaching stars. For the content-mix scorecard that drives the top-N selection,
