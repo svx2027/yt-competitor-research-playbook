@@ -52,3 +52,14 @@ vidIQ keyword volume has no country parameter (default-geo only), and the outlie
 deliberately generous and can over-fire on very high-volume channels (see the large-niche learning in
 [`CLAUDE.md`](CLAUDE.md)). The scripts carry niche constants inline; refactoring them to read
 `config.yaml` is an optional one-time job (see [`03_scripts/run_order.md`](03_scripts/run_order.md)).
+
+## Related tools
+
+- [yt-competitor-swipe](https://github.com/svx2027/yt-competitor-swipe): runs
+  the ongoing daily version of competitive intelligence this playbook's
+  one-time research phases feed into.
+- [yt-competitor-outlier-pipeline](https://github.com/svx2027/yt-competitor-outlier-pipeline):
+  a focused, keyless implementation of this playbook's outlier-detection
+  method for a single competitor channel.
+
+Full index of all public repos: [github.com/svx2027](https://github.com/svx2027).
